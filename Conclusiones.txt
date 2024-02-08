@@ -1,0 +1,9 @@
+El escenario de prueba se realizo de manera exitosa, lleagndo a determinar la efectividad de la ejecución en un corto tiempo,
+optimizando asi el procedo de certificación del software a evaluar.
+
+El reporte que lanza serenity es comprensible para usuarios que pertenezcan al negocio y puedan validar su funcionalidad, el feature
+de ejecución se lo realizo en español ya que el cliente es latino, la estructura del proyecto se llevo el modelo de screenplay para
+una buena estructura del proyecto, la codificación de las clases se realizo en inglés para cumplir las buenas normas de programación.
+
+Se ejecuto un escenario, el cual no es outline porque se evaluó un solo escenario, pero al tener multiples escenarios de prueba se
+recomienda utilizar los escenarios outline para no repetir codigo y así tener un codigo limpio.
