@@ -31,21 +31,18 @@ public class comprasStepDefinition {
     @Before
     public void setTheStage() {
 
-        //int puertoChromeDriver = 54114;
-
-        // Configura las opciones de ChromeDriver
-       // ChromeOptions options = new ChromeOptions();
-      //  options.addArguments("--port=" + puertoChromeDriver);
-        System.setProperty("webdriver.chrome.driver", "D:\\Users\\ue0100065u\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        //driver = new ChromeDriver(options);
-        driver = new ChromeDriver();
+        /System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
 
         // Configurar Serenity BDD para usar el WebDriver
-        actor = Actor.named("Usuario");
-        actor.can(BrowseTheWeb.with(driver));
+        actor2 = Actor.named("Usuario");
+        actor2.can(BrowseTheWeb.with(driver));
 
         // Configurar el escenario de Serenity BDD
         OnStage.setTheStage(new OnlineCast());
+        theActorCalled("Usuario").can(BrowseTheWeb.with(driver));
     }
 
     @Given("^(.*) navega a la pagina principal")
@@ -65,21 +62,7 @@ public class comprasStepDefinition {
                 FormBuscarProducto.agregarProducto()
         );
     }
-/*
-    @When("Buscar {string}")
-    public void buscarImac(String producto) {
-        withCurrentActor(
-                FormBuscarProducto.buscarProducto(producto)
-        );
-    }
 
-    @And("Agregar al carrito")
-    public void agregarImac() {
-        withCurrentActor(
-                FormBuscarProducto.agregarProducto()
-        );
-    }
-*/
     @When("Click en shopping cart")
     public void botonCarrito(){
         withCurrentActor(

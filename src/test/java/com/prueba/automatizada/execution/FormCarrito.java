@@ -5,6 +5,12 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.SelectFromOptions;
+import java.util.concurrent.Callable;
+
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
+import net.serenitybdd.screenplay.waits.WaitUntil;
+
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isCurrentlyVisible;
 
 public class FormCarrito {
 
@@ -30,6 +36,7 @@ public class FormCarrito {
 
     public static Performable completarForm(String firstname, String lastname, String email, String telephone,
                                            String address, String city, String postcode, String country, String zone) {
+
         return Task.where("{0} completar campos formulario",
                         Enter.theValue(firstname).into(TagsFormularioCheckout.FIRST_NAME),
                         Enter.theValue(lastname).into(TagsFormularioCheckout.LAST_NAME),
@@ -39,6 +46,10 @@ public class FormCarrito {
                         Enter.theValue(city).into(TagsFormularioCheckout.CITY),
                         Enter.theValue(postcode).into(TagsFormularioCheckout.POSTCODE),
                         Click.on(TagsFormularioCheckout.COUNTRY),
+                        WaitUntil.the(
+                                TagsFormularioCheckout.COUNTRY,
+                                isCurrentlyVisible()
+                        ).forNoMoreThan(5).seconds(),
                         SelectFromOptions.byVisibleText(country).from(TagsFormularioCheckout.COUNTRY),
                         Click.on(TagsFormularioCheckout.ZONE),
                         SelectFromOptions.byVisibleText(zone).from(TagsFormularioCheckout.ZONE)
